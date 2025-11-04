@@ -1,0 +1,19 @@
+public class Main {
+    public static void main(String[] args) {
+        
+        System.out.println("--- SCENARIO 1: USING MYSQL ---");
+        DBConnectionInterface mySQL = new MySQLConnection();
+        PasswordReminder reminderMySQL = new PasswordReminder(mySQL);
+        reminderMySQL.sendReminders();
+
+        System.out.println("\n--- SCENARIO 2: SWITCHING TO POSTGRESQL ---");
+        DBConnectionInterface postgreSQL = new PostgreSQLConnection();
+        PasswordReminder reminderPostgreSQL = new PasswordReminder(postgreSQL);
+        reminderPostgreSQL.sendReminders(); 
+
+        System.out.println("\n--- SCENARIO 3: USING SIMULATED (FOR TESTING/DEV) ---");
+        DBConnectionInterface simConnection = new SimulatedConnection();
+        PasswordReminder reminderSim = new PasswordReminder(simConnection);
+        reminderSim.sendReminders();
+    }
+}
